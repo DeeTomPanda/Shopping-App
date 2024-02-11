@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, KeyboardAvoidingView} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn';
 
@@ -10,12 +10,14 @@ export const Hero: React.FC<{}> = () => {
       <Text style={tailwind('font-bold text-white my-2 text-xl')}>
         {'Hey User,'}
       </Text>
-      <Searchbar
-        style={tailwind('w-11/12 self-center my-4')}
-        value={''}
-        loading={false}
-        placeholder="Search Products or Store"
-      />
+      <KeyboardAvoidingView behavior={'height'}>
+        <Searchbar
+          style={tailwind('w-11/12 self-center my-4')}
+          value={''}
+          loading={false}
+          placeholder="Search Products or Store"
+        />
+      </KeyboardAvoidingView>
       <View style={tailwind('flex flex-row w-full justify-between my-2')}>
         <View style={tailwind('flex flex-col w-fit ')}>
           <Text style={tailwind('font-semi-bold text-slate-300 text-md')}>

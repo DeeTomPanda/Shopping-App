@@ -31,6 +31,11 @@
 			"marginBottom": 8
 		}
 	},
+	"mt-3": {
+		"style": {
+			"marginTop": 12
+		}
+	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -61,6 +66,51 @@
 			"height": "25%"
 		}
 	},
+	"h-8": {
+		"style": {
+			"height": 32
+		}
+	},
+	"h-16": {
+		"style": {
+			"height": 64
+		}
+	},
+	"h-3/4": {
+		"style": {
+			"height": "75%"
+		}
+	},
+	"h-2/4": {
+		"style": {
+			"height": "50%"
+		}
+	},
+	"h-2/5": {
+		"style": {
+			"height": "40%"
+		}
+	},
+	"h-1/5": {
+		"style": {
+			"height": "20%"
+		}
+	},
+	"h-3/5": {
+		"style": {
+			"height": "60%"
+		}
+	},
+	"h-4/5": {
+		"style": {
+			"height": "80%"
+		}
+	},
+	"h-10": {
+		"style": {
+			"height": 40
+		}
+	},
 	"w-11/12": {
 		"style": {
 			"width": "91.666667%"
@@ -79,6 +129,38 @@
 	"w-full": {
 		"style": {
 			"width": "100%"
+		}
+	},
+	"w-2/4": {
+		"style": {
+			"width": "50%"
+		}
+	},
+	"w-2/5": {
+		"style": {
+			"width": "40%"
+		}
+	},
+	"w-1/5": {
+		"style": {
+			"width": "20%"
+		}
+	},
+	"w-4/5": {
+		"style": {
+			"width": "80%"
+		}
+	},
+	"w-10": {
+		"style": {
+			"width": 40
+		}
+	},
+	"flex-1": {
+		"style": {
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"flexBasis": "0%"
 		}
 	},
 	"flex-row": {
@@ -135,6 +217,23 @@
 			"borderLeftWidth": 2
 		}
 	},
+	"border": {
+		"style": {
+			"borderTopWidth": 1,
+			"borderRightWidth": 1,
+			"borderBottomWidth": 1,
+			"borderLeftWidth": 1
+		}
+	},
+	"border-red-100": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(254 226 226 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(254 226 226 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(254 226 226 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(254 226 226 / var(--tw-border-opacity))"
+		}
+	},
 	"bg-black": {
 		"style": {
 			"--tw-bg-opacity": 1,
@@ -145,6 +244,30 @@
 		"style": {
 			"--tw-bg-opacity": 1,
 			"backgroundColor": "rgb(42 75 160 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-blue-400": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(96 165 250 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-red-200": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(254 202 202 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-blue-200": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(191 219 254 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-red-800": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(153 27 27 / var(--tw-bg-opacity))"
 		}
 	},
 	"px-2": {
