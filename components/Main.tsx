@@ -5,7 +5,7 @@ import {TouchableOpacity, Text} from 'react-native';
 import {Home} from './Home/Home';
 import {Settings} from './Settings/Settings';
 import {Favourites} from './Favourites/Favourites';
-import {Products} from './Home/Products';
+import {Categories} from './Categories/Categories';
 import {AnimatedTabIcon} from './AnimatedTabIcon';
 
 const Tab = createBottomTabNavigator();
@@ -33,7 +33,7 @@ export const Main: React.FC<{}> = () => {
               iconName = 'heart-circle-outline';
             } else if (route.name === 'Settings') {
               iconName = 'dots-vertical';
-            } else if (route.name === 'Products') {
+            } else if (route.name === 'Categories') {
               iconName = 'dots-grid';
             }
 
@@ -59,8 +59,8 @@ export const Main: React.FC<{}> = () => {
         />
 
         <Tab.Screen
-          name={'Products'}
-          component={Products}
+          name={'Categories'}
+          component={Categories}
           listeners={{
             tabPress: e => {
               setCurrentTab('dots-grid');

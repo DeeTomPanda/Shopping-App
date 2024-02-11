@@ -14,7 +14,7 @@ export const ImgCarousel = () => {
     'https://fastly.picsum.photos/id/175/2896/1944.jpg?hmac=djMSfAvFgWLJ2J3cBulHUAb4yvsQk0d4m4xBJFKzZrs',
   ];
   return (
-    <View style={tailwind('mt-6 self-center w-11/12  rounded-lg')}>
+    <View style={tailwind('mt-6 self-center w-11/12 rounded-lg  h-1/4 mb-2')}>
       <Carousel
         width={width}
         height={width / 1.5}
