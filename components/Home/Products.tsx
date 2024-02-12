@@ -1,47 +1,86 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
-import {useTailwind} from 'tailwind-rn';
-import getData from './../../services/getData';
-
-interface productsType {
-  id: number;
-  description: string;
-  price: number;
-  title: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
+import React, { useEffect, useState } from "react";
+import { View, Text, FlatList, Dimensions } from "react-native";
+import { useTailwind } from "tailwind-rn";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { fetchDataAsync } from "../../store/slices";
+import { Card } from "react-native-paper";
 
 export const Products: React.FC<{}> = () => {
   const tailwind = useTailwind();
-  const [products, setProducts] = useState<productsType[]>([]);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.root);
+
   useEffect(() => {
-    getData()
-      .then(response => {
-        setProducts(response.data.products);
-        console.log(products.length);
-      })
-      .catch(err => console.log(err));
+    async function fetchIt() {
+      await dispatch(fetchDataAsync());
+    }
+    fetchIt();
   }, []);
-  return (
-    <View style={tailwind('flex flex-col flex-1 mt-4')}>
+
+  const renderFooter = () => {
+    return (
       <View>
-        <Text style={tailwind('text-3xl text-black')}>{'Recommended'}</Text>
+        <Text style={tailwind("font-semibold text-md")}>
+          {"No More Products to Display!"}
+        </Text>
       </View>
-      <View style={tailwind(' flex flex-1')}>
-        <FlatList
-          columnWrapperStyle={{justifyContent: 'space-between'}}
-          style={tailwind('flex flex-1')}
-          data={products}
-          extraData={products.length}
-          renderItem={({item}) => (
-            <View style={tailwind(' h-11/12  flex bg-blue-200')}>
-              <Text>{item.price}</Text>
-            </View>
-          )}
-          numColumns={2}></FlatList>
-      </View>
+    );
+  };
+
+  return (
+    <View style={tailwind("flex flex-col flex-1 mt-4 p-2")}>
+      {products.length < 2 ? null : (
+        <>
+          <View>
+            <Text style={tailwind("text-3xl text-black mb-2")}>
+              {"Recommended"}
+            </Text>
+          </View>
+          <View style={tailwind(" flex flex-1")}>
+            <FlatList
+              numColumns={2}
+              data={products.slice(1)}
+              columnWrapperStyle={{
+                padding: 15,
+              }}
+              contentContainerStyle={tailwind(
+                " w-full items-center  justify-center"
+              )}
+              ListFooterComponent={renderFooter}
+              renderItem={({ item }) => (
+                <>
+                  <View
+                    style={tailwind(
+                      "flex flex-0 flex-col border-sky-300 border-3 rounded-md h-75 w-35"
+                    )}
+                  >
+                    <Card.Cover
+                      style={tailwind(
+                        "h-25 w-35 mx-2 border-2 rounded-md border-slate-300 object-fit"
+                      )}
+                      source={{ uri: item.thumbnail }}
+                      alt={String(item.id)}
+                    />
+                    <Card.Content
+                      style={tailwind("w-30 overflow-hidden break-words")}
+                    >
+                      <Text style={tailwind("w-40  font-bold rounded-md")}>
+                        {"$" + item.price}
+                      </Text>
+                      <Text
+                        numberOfLines={2}
+                        style={tailwind(" flex-0 text-xs  ")}
+                      >
+                        {item.title}
+                      </Text>
+                    </Card.Content>
+                  </View>
+                </>
+              )}
+            ></FlatList>
+          </View>
+        </>
+      )}
     </View>
   );
 };
