@@ -1,12 +1,12 @@
 import "react-native-gesture-handler";
-import { AppRegistry } from "react-native";
-import App from "./App";
-import { store } from "./store/store";
+import { AppRegistry, YellowBox } from "react-native";
+import App from "./src/App";
+import { store } from "./src/store/store";
 import { Provider } from "react-redux";
 import { name as appName } from "./app.json";
 
 const AppWithStore = () => {
-  console.disableYellowBox = true; // Disable YellowBox warnings
+  YellowBox.ignoreWarnings(["Require cycle:", "Remote debugger"]);
   return (
     <Provider store={store}>
       <App />

@@ -4,13 +4,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Home } from "./Home/Home";
 import { ProductDetails } from "./ProductDetails/ProductDetails";
 
-const Stack = createStackNavigator();
+type RootStackList = {
+  Home: undefined;
+  ProductDetails: undefined;
+};
+
+const Stack = createStackNavigator<RootStackList>();
 
 export const SubMain: React.FC<{}> = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={"home"} component={Home} />
-      <Stack.Screen name={"productDetails"} component={ProductDetails} />
+      <Stack.Screen name={"Home"} component={Home} />
+      <Stack.Screen name={"ProductDetails"} component={ProductDetails} />
     </Stack.Navigator>
   );
 };
