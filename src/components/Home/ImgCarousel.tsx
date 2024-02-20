@@ -14,11 +14,11 @@ export const ImgCarousel = () => {
     "https://fastly.picsum.photos/id/175/2896/1944.jpg?hmac=djMSfAvFgWLJ2J3cBulHUAb4yvsQk0d4m4xBJFKzZrs",
   ];
   return (
-    <View style={tailwind("mt-6 self-center w-11/12 rounded-lg  h-1/4 mb-2")}>
+    <View style={tailwind("text-sm")}>
       <Carousel
-        autoPlay={false}
-        width={width}
-        height={width / 1.5}
+        autoPlay={true}
+        width={width / 1.0}
+        height={width / 2.45}
         mode={"parallax"}
         data={[...carouselImgs]}
         scrollAnimationDuration={1000}

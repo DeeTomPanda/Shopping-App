@@ -1,6 +1,7 @@
 import axios from "axios";
+import { productsType } from "../store/interfaces";
 
-const fetchData = () => {
+const fetchData = (): Promise<productsType[]> => {
   return new Promise((res, rej) => {
     axios
       .get("https://dummyjson.com/products")

@@ -1,21 +1,45 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-  TouchableHighlight,
-} from "react-native";
+import { View, Text, Dimensions, TouchableHighlight } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { ProductItem } from "./ProductItem";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { fetchDataAsync } from "../../store/slices";
-import { Card } from "react-native-paper";
 
-export const Products: React.FC<{ navigation: any }> = ({ navigation }) => {
-  console.log(navigation);
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+import { PanGestureHandler } from "react-native-gesture-handler";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+
+type StackList = {
+  Home: undefined;
+  ProductDetails: undefined;
+  Checkout: undefined;
+};
+
+type TabList = {
+  Settings: undefined;
+  Categories: undefined;
+  Favourites: undefined;
+  Home: undefined;
+};
+
+type RootStackList = {
+  SubMain: StackList;
+  TabNav: TabList;
+};
+
+export const Products: React.FC<BottomTabScreenProps<TabList, "Home">> = ({
+  navigation,
+}) => {
   const tailwind = useTailwind();
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.root);
+  const products = useAppSelector((state) => {
+    return state.root.products;
+  });
 
   useEffect(() => {
     async function fetchIt() {
@@ -24,77 +48,45 @@ export const Products: React.FC<{ navigation: any }> = ({ navigation }) => {
     fetchIt();
   }, []);
 
-  const renderFooter = () => {
-    return (
-      <View>
-        <Text style={tailwind("font-semibold text-sm")}>
-          {"No More Products to Display!"}
-        </Text>
-      </View>
-    );
-  };
+  // Animation goes here
+  const height = Dimensions.get("window").height / 2;
+  const translateY = useSharedValue(0);
+
+  const gestureHandler = useAnimatedGestureHandler({
+    onStart: (_, ctx) => {
+      if (
+        translateY.value + 5 <= height / 2 ||
+        translateY.value - 5 >= (-1 * height) / 2.25
+      )
+        ctx.startY = translateY.value;
+    },
+    onActive: (event, ctx: Record<string, any>) => {
+      const newY = ctx.startY + event.translationY;
+      const upperLim = height / 2;
+      const lowerLim = (-1 * height) / 2.25;
+
+      translateY.value = Math.max(Math.min(newY, upperLim), lowerLim);
+    },
+    onEnd: () => {},
+  });
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+    };
+  });
 
   return (
-    <View style={tailwind("flex flex-col flex-1 mt-4 p-2")}>
-      {products.length < 2 ? null : (
-        <>
-          <View>
-            <Text style={tailwind("text-3xl text-black mb-2")}>
-              {"Recommended"}
-            </Text>
-          </View>
-          <View style={tailwind("w-full flex flex-1")}>
-            <FlatList
-              numColumns={2}
-              data={products.slice(1)}
-              columnWrapperStyle={{
-                padding: 5,
-                gap: 20,
-              }}
-              contentContainerStyle={tailwind(
-                " w-full  items-center bg-red-200"
-              )}
-              initialNumToRender={5}
-              ListFooterComponent={renderFooter}
-              renderItem={({ item }) => (
-                <TouchableHighlight
-                  onPress={() => {
-                    console.log("Touched");
-                    navigation.navigate("SubMain", {
-                      screen: "ProductDetails",
-                    });
-                  }}
-                >
-                  <>
-                    <View
-                      style={tailwind(
-                        "flex flex-col border-sky-300 border-2 rounded-md h-40 w-44 "
-                      )}
-                    >
-                      <Card.Cover
-                        style={tailwind(
-                          "h-24 w-40 self-center border-2 rounded-md border-slate-300"
-                        )}
-                        source={{ uri: item.thumbnail }}
-                        alt={String(item.id)}
-                      />
-                      <Card.Content style={tailwind("w-32 overflow-hidden")}>
-                        <Text style={tailwind("w-40  font-bold rounded-md")}>
-                          {"$" + item.price}
-                        </Text>
-                        <Text numberOfLines={2} style={tailwind(" text-xs")}>
-                          {item.title}
-                        </Text>
-                      </Card.Content>
-                    </View>
-                  </>
-                </TouchableHighlight>
-              )}
-              keyExtractor={(item) => String(item.id)}
-            ></FlatList>
-          </View>
-        </>
-      )}
-    </View>
+    <PanGestureHandler onGestureEvent={gestureHandler}>
+      <Animated.View style={[animatedStyle]}>
+        <View
+          style={tailwind("flex flex-col flex-1 grow mt-4 p-2  z-10 bg-white")}
+        >
+          {products.length < 2 ? null : (
+            <ProductItem navigation={navigation} products={products} />
+          )}
+        </View>
+      </Animated.View>
+    </PanGestureHandler>
   );
 };

@@ -8,10 +8,31 @@ import { Favourites } from "./Favourites/Favourites";
 import { Categories } from "./Categories/Categories";
 import { AnimatedTabIcon } from "./AnimatedTabIcon";
 import { SubMain } from "./SubMain";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  StackScreenProps,
+  createStackNavigator,
+} from "@react-navigation/stack";
+
+type StackList = {
+  Home: undefined;
+  ProductDetails: undefined;
+  Checkout: undefined;
+};
+
+type TabList = {
+  Settings: undefined;
+  Categories: undefined;
+  Favourites: undefined;
+  Home: undefined;
+};
+
+type RootStackList = {
+  SubMain: StackList;
+  TabNav: TabList;
+};
 
 const Tab = createBottomTabNavigator();
-const TabNav = () => {
+const TabNav: React.FC = ({}) => {
   const [currentTab, setCurrentTab] = React.useState<string>("home");
   return (
     <Tab.Navigator
@@ -96,7 +117,17 @@ const Stack = createStackNavigator();
 export const Main: React.FC<{}> = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          presentation: "modal",
+          detachPreviousScreen: true,
+          transitionSpec: {
+            close: { animation: "timing", config: { duration: 1000 } },
+            open: { animation: "timing", config: { duration: 1000 } },
+          },
+        }}
+      >
         <Stack.Screen name="Tab" component={TabNav}></Stack.Screen>
         <Stack.Screen name="SubMain" component={SubMain}></Stack.Screen>
       </Stack.Navigator>

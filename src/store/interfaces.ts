@@ -10,6 +10,11 @@ export interface productsType {
   images: string[];
 }
 
+export interface rootState {
+  products: productsType[];
+  selectedProducts: productsType[];
+}
+
 export const createNewProduct = (): productsType => {
   return {
     id: 0,

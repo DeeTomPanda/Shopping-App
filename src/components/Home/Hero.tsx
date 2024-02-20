@@ -20,12 +20,12 @@ export const Hero: React.FC<{}> = () => {
       </KeyboardAvoidingView>
       <View style={tailwind("flex flex-row w-full justify-between my-2")}>
         <View style={tailwind("flex flex-col w-fit ")}>
-          <Text style={tailwind("font-semi-bold text-slate-300 text-sm")}>
+          <Text style={tailwind("font-semibold text-slate-300 text-sm")}>
             {"Delivery to"}
           </Text>
         </View>
         <View style={tailwind("flex flex-col w-fit ")}>
-          <Text style={tailwind("font-semi-bold text-slate-300 text-sm")}>
+          <Text style={tailwind("font-semibold text-slate-300 text-sm")}>
             {"Within"}
           </Text>
         </View>

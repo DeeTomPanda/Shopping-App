@@ -1,6 +1,5 @@
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem
+.z-10 {
+  z-index: 10
 }
 
 .my-2 {
@@ -13,11 +12,6 @@
   margin-bottom: 1rem
 }
 
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem
-}
-
 .mb-2 {
   margin-bottom: 0.5rem
 }
@@ -26,44 +20,40 @@
   margin-top: 1rem
 }
 
-.mt-6 {
-  margin-top: 1.5rem
+.mb-10 {
+  margin-bottom: 2.5rem
+}
+
+.mb-20 {
+  margin-bottom: 5rem
 }
 
 .flex {
   display: flex
 }
 
-.h-1\/4 {
-  height: 25%
-}
-
 .h-12 {
   height: 3rem
-}
-
-.h-72 {
-  height: 18rem
-}
-
-.h-full {
-  height: 100%
 }
 
 .h-24 {
   height: 6rem
 }
 
-.h-20 {
-  height: 5rem
-}
-
-.h-36 {
-  height: 9rem
+.h-32 {
+  height: 8rem
 }
 
 .h-40 {
   height: 10rem
+}
+
+.h-full {
+  height: 100%
+}
+
+.min-h-20 {
+  min-height: 5rem
 }
 
 .w-11\/12 {
@@ -74,12 +64,16 @@
   width: 3rem
 }
 
-.w-36 {
-  width: 9rem
+.w-32 {
+  width: 8rem
 }
 
 .w-40 {
   width: 10rem
+}
+
+.w-44 {
+  width: 11rem
 }
 
 .w-fit {
@@ -90,16 +84,12 @@
   width: 100%
 }
 
-.w-32 {
-  width: 8rem
-}
-
-.w-44 {
-  width: 11rem
-}
-
 .flex-1 {
   flex: 1 1 0%
+}
+
+.grow {
+  flex-grow: 1
 }
 
 .flex-row {
@@ -122,10 +112,6 @@
   justify-content: space-between
 }
 
-.justify-around {
-  justify-content: space-around
-}
-
 .self-center {
   align-self: center
 }
@@ -138,16 +124,17 @@
   border-radius: 9999px
 }
 
-.rounded-lg {
-  border-radius: 0.5rem
-}
-
 .rounded-md {
   border-radius: 0.375rem
 }
 
 .border-2 {
   border-width: 2px
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity))
 }
 
 .border-sky-300 {
@@ -160,11 +147,6 @@
   border-color: rgb(203 213 225 / var(--tw-border-opacity))
 }
 
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity))
-}
-
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity))
@@ -175,27 +157,18 @@
   background-color: rgb(42 75 160 / var(--tw-bg-opacity))
 }
 
-.bg-red-200 {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
 .p-2 {
   padding: 0.5rem
 }
 
-.p-4 {
-  padding: 1rem
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem
 }
 
 .pb-5 {
@@ -204,10 +177,6 @@
 
 .pt-8 {
   padding-top: 2rem
-}
-
-.pr-2 {
-  padding-right: 0.5rem
 }
 
 .text-3xl {
